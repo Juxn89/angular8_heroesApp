@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroesService } from '../../services/heroes.service';
+import { HeroeModel } from '../../models/heroe.model';
 
 @Component({
   selector: 'app-heroes',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
-  constructor() { }
+  cargando: boolean = true;
+  heroes: HeroeModel[] = [];
+  constructor(private heroeServices: HeroesService) { }
 
   ngOnInit() {
+    this.heroeServices.getHeroes().subscribe(response => {
+      this.cargando = false;
+      this.heroes = response;
+    });
   }
 
 }
