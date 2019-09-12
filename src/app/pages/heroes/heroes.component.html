@@ -26,10 +26,17 @@
             <td>{{ h.nombre }}</td>
             <td>{{ h.poder }}</td>
             <td>
-                <label class="badge bagge-succeess" *ngIf="h.vivo">Vivo</label>
-                <label class="badge bagge-succeess" *ngIf="!h.vivo">Muerto</label>
+                <label class="badge badge-success" *ngIf="h.vivo">Vivo</label>
+                <label class="badge badge-danger" *ngIf="!h.vivo">Muerto</label>
             </td>
-            <td> --- </td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/heroe', h.id]">
+                    <i class="fa fa-pen"></i>
+                </button>
+                <button class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
