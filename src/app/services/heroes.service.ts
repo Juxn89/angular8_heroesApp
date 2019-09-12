@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeroeModel } from '../models/heroe.model';
 import { map } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,12 @@ export class HeroesService {
           return heroe;
         })
       );
+  }
+
+  ActualizarHeroe(heroe: HeroeModel) {
+    const heroeTemp = { ...heroe };
+
+    delete heroeTemp.id;
+    return this.http.put(`${this.url}/heroes/${heroe.id}.json`, heroeTemp);
   }
 }
